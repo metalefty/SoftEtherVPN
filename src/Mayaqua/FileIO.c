@@ -1295,6 +1295,11 @@ void GetExeNameW(wchar_t *name, UINT size)
 	UniStrCpy(name, size, exe_file_name_w);
 }
 
+void GetDbDir(char *name, UINT size)
+{
+	Format(name, size, "/tmp/softether/db");
+}
+
 // Initialization of the acquisition of the EXE file name
 void InitGetExeName(char *arg)
 {
