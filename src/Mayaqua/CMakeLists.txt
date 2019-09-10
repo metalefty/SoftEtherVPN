@@ -64,8 +64,6 @@ if(UNIX)
   if (CMAKE_SYSTEM_PROCESSOR MATCHES "^(armv7l|aarch64|s390x)$" OR NOT HAVE_SYS_AUXV OR SKIP_CPU_FEATURES)
     add_definitions(-DSKIP_CPU_FEATURES)
   else()
-    add_subdirectory(3rdparty/cpu_features)
-    set_property(TARGET cpu_features PROPERTY POSITION_INDEPENDENT_CODE ON)
     target_link_libraries(mayaqua PRIVATE cpu_features)
   endif()
 
