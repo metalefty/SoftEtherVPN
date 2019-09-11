@@ -515,7 +515,7 @@
 // Expiration date of random size cache
 #define	RAND_SIZE_CACHE_EXPIRE		(24 * 60 * 60 * 1000)
 // Management allowed IP address list file name
-#define	ADMINIP_TXT					"@adminip.txt"
+#define	ADMINIP_TXT					"$adminip.txt"
 
 #define NON_SSL_MIN_COUNT			60
 #define NON_SSL_ENTRY_EXPIRES		(10 * 60 * 1000)
@@ -566,7 +566,7 @@
 //////////////////////////////////////////////////////////////////////
 
 #define	EL_ADMIN_PORT			22888
-#define	EL_CONFIG_FILENAME		"@etherlogger.config"
+#define	EL_CONFIG_FILENAME		"$etherlogger.config"
 #define	EL_PACKET_LOG_DIR_NAME	"@etherlogger_log"
 #define	EL_PACKET_LOG_FILE_NAME	"@etherlogger_log/%s"
 #define	EL_PACKET_LOG_PREFIX	"pkt"
