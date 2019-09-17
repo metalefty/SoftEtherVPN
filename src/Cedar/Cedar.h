@@ -438,26 +438,26 @@
 // @ - placeholder for LogDir
 // $ - placeholder for DbDir (config directory)
 //
-#define	SERVER_LOG_DIR				"server_log"
+#define	SERVER_LOG_DIR				"server"
 #define	SERVER_LOG_DIR_NAME			"@"SERVER_LOG_DIR
 #define	BRIDGE_LOG_DIR_NAME			SERVER_LOG_DIR_NAME
 #define	SERVER_LOG_PERFIX			"vpn"
 
-#define	HUB_SECURITY_LOG_DIR		"security_log"
+#define	HUB_SECURITY_LOG_DIR		"security"
 #define	HUB_SECURITY_LOG_DIR_NAME	"@"HUB_SECURITY_LOG_DIR
 #define	HUB_SECURITY_LOG_FILE_NAME	HUB_SECURITY_LOG_DIR_NAME"/%s"
 #define	HUB_SECURITY_LOG_PREFIX		"sec"
-#define	HUB_PACKET_LOG_DIR		"packet_log"
+#define	HUB_PACKET_LOG_DIR		"packet"
 #define	HUB_PACKET_LOG_DIR_NAME		"@"HUB_PACKET_LOG_DIR
 #define	HUB_PACKET_LOG_FILE_NAME	HUB_PACKET_LOG_DIR_NAME"/%s"
 #define	HUB_PACKET_LOG_PREFIX		"pkt"
 
-#define	NAT_LOG_DIR				"secure_nat_log"
+#define	NAT_LOG_DIR				"secure_nat"
 #define	NAT_LOG_DIR_NAME			"@"NAT_LOG_DIR
 #define	NAT_LOG_FILE_NAME			NAT_LOG_DIR_NAME"/%s"
 #define	NAT_LOG_PREFIX				"snat"
 
-#define	CLIENT_LOG_DIR_NAME			"@client_log"
+#define	CLIENT_LOG_DIR_NAME			"@client"
 #define	CLIENT_LOG_PREFIX			"client"
 
 // Packet log settings
@@ -575,7 +575,7 @@
 
 #define	EL_ADMIN_PORT			22888
 #define	EL_CONFIG_FILENAME		"$etherlogger.config"
-#define	EL_PACKET_LOG_DIR	"etherlogger_log"
+#define	EL_PACKET_LOG_DIR	"etherlogger"
 #define	EL_PACKET_LOG_DIR_NAME	"@"EL_PACKET_LOG_DIR
 #define	EL_PACKET_LOG_FILE_NAME	EL_PACKET_LOG_DIR_NAME"/%s"
 #define	EL_PACKET_LOG_PREFIX	"pkt"
