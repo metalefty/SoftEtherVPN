@@ -136,7 +136,7 @@
 
 #define	SERVER_MAX_SESSIONS			4096	// Maximum number of sessions that the server supports
 #define SERVER_MAX_SESSIONS_FOR_CARRIER_EDITION	100000	// Maximum number of sessions that the server supports (Carrier Edition)
-#define	NAT_MAX_SESSIONS			4096	// Maximum number of sessions that are supported by NAT
+#define	NAT_MAX_SESSIONS			20000	// Maximum number of sessions that are supported by NAT
 #define	NAT_MAX_SESSIONS_KERNEL		65536	// Maximum number of sessions that are supported by NAT (In the case of kernel-mode NAT)
 #define	MAX_HUBS					4096	// The maximum number of virtual HUB
 #define MAX_HUBS_FOR_CARRIER_EDITION	100000	// The maximum number of virtual HUB (Carrier Edition)
