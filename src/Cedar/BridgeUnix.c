@@ -793,6 +793,11 @@ bool EthSetMtu(ETH *e, UINT mtu)
 // Is changing MTU supported?
 bool EthIsChangeMtuSupported(ETH *e)
 {
+#ifdef __FreeBSD__
+	// FreeBSD seriously dislikes MTU changes
+	return false; 
+#endif
+
 #if	defined(UNIX_LINUX) || defined(UNIX_BSD) || defined(UNIX_SOLARIS)
 	// Validate arguments
 	if (e == NULL || e->Tap != NULL)
