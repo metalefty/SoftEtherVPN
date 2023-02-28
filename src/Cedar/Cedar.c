@@ -1569,9 +1569,15 @@ CEDAR *NewCedar(X *server_x, K *server_k)
 	Format(tmp, sizeof(tmp),
 		"Version %u.%02u Build %u"
 		"%s"    // Alpha, Beta, Release Candidate or nothing
+#if defined(SE_TAGNAME)
+		"(%s) " // FreeBSD ports version
+#endif
 		"(%s)", // Language
 		CEDAR_VERSION_MAJOR, CEDAR_VERSION_MINOR, CEDAR_VERSION_BUILD,
 		c->Beta == 0 ? " " : tmp2,
+#if defined(SE_TAGNAME)
+		SE_TAGNAME,
+#endif
 		_SS("LANGSTR"));
 	Trim(tmp);
 

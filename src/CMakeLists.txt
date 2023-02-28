@@ -115,6 +115,7 @@ if(UNIX)
   set(SE_DBDIR "" CACHE STRING "Directory where config files are saved")
   set(SE_LOGDIR "" CACHE STRING "Directory where log files are written")
   set(SE_PIDDIR "" CACHE STRING "Directory where PID files are put")
+  set(SE_TAGNAME "" CACHE STRING "FreeBSD ports version string")
 
   if(SE_DBDIR)
     add_definitions(-DSE_DBDIR="${SE_DBDIR}")
@@ -126,6 +127,10 @@ if(UNIX)
 
   if(SE_PIDDIR)
     add_definitions(-DSE_PIDDIR="${SE_PIDDIR}")
+  endif()
+
+  if(SE_TAGNAME)
+    add_definitions(-DSE_TAGNAME="${SE_TAGNAME}")
   endif()
 endif()
 
