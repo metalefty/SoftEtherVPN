@@ -668,7 +668,7 @@ bool UnixVLanCreate(char *name, UCHAR *mac_address, bool create_up)
 // Set a VLAN up/down
 bool UnixVLanSetState(char* name, bool state_up)
 {
-#ifdef UNIX_LINUX
+#ifdef UNIX_LINUX || UNIX_BSD
 	UNIX_VLAN_LIST *t, tt;
 	struct ifreq ifr;
 	int s;
@@ -714,7 +714,7 @@ bool UnixVLanSetState(char* name, bool state_up)
 		close(s);
 	}
 	UnlockList(unix_vlan);
-#endif // UNIX_LINUX
+#endif // UNIX_LINUX || UNIX_BSD
 
 	return true;
 }
