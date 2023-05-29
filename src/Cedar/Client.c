@@ -6399,6 +6399,11 @@ bool CtConnect(CLIENT *c, RPC_CLIENT_CONNECT *connect)
 			}
 
 			unix_disabled = v->Enabled ? false : true;
+
+			if (!unix_disabled)
+			{
+				UnixVLanSetState(t.Name, true);
+			}
 		}
 		UnlockList(c->UnixVLanList);
 #endif	// OS_WIN32
