@@ -16,7 +16,7 @@ jobs:
         submodules: true
     - name: Install dependencies
       run: |
-        brew install libsodium
+        brew install libsodium cpu_features
     - name: Compile 
       run: |
         ./configure

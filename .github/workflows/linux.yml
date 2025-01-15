@@ -12,7 +12,7 @@ jobs:
         submodules: true
 
     - name: Install dependencies
-      run: sudo apt update && sudo apt-get -y install cmake gcc g++ ninja-build libncurses5-dev libreadline-dev libsodium-dev libssl-dev make zlib1g-dev liblz4-dev libnl-genl-3-dev 
+      run: sudo apt update && sudo apt-get -y install cmake gcc g++ ninja-build libncurses5-dev libreadline-dev libsodium-dev libssl-dev make zlib1g-dev liblz4-dev libnl-genl-3-dev libcpu-features-dev
 
     - name: Build
       run: |

@@ -16,7 +16,7 @@ jobs:
         with:
           submodules: true
       - name: Install dependencies
-        run: apk add binutils --no-cache build-base readline-dev openssl-dev ncurses-dev git cmake zlib-dev libsodium-dev gnu-libiconv 
+        run: apk add binutils --no-cache build-base readline-dev openssl-dev ncurses-dev git cmake zlib-dev libsodium-dev gnu-libiconv libvolk-dev
       - name: Configure
         run: ./configure
       - name: make 
