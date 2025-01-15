@@ -56,8 +56,6 @@ if(UNIX)
   set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
   set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 
-  include(CheckIncludeFile)
-  Check_Include_File(sys/auxv.h HAVE_SYS_AUXV)
   if(EXISTS "/lib/systemd/system")
     set(CMAKE_INSTALL_SYSTEMD_UNITDIR "/lib/systemd/system" CACHE STRING "Where to install systemd unit files")
   endif()

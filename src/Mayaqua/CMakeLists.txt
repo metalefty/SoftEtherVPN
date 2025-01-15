@@ -109,12 +109,12 @@ if(UNIX)
       $<$<BOOL:${LIB_RT}>:${LIB_RT}>
   )
 
-  if (CMAKE_SYSTEM_PROCESSOR MATCHES "^(armv7l|aarch64|s390x)$" OR NOT HAVE_SYS_AUXV OR SKIP_CPU_FEATURES)
+  if (SKIP_CPU_FEATURES)
+    message("-- Skipping cpu_features: SKIP_CPU_FEATURES=${SKIP_CPU_FEATURES}")
     add_definitions(-DSKIP_CPU_FEATURES)
   else()
-    add_subdirectory(3rdparty/cpu_features)
-    set_property(TARGET cpu_features PROPERTY POSITION_INDEPENDENT_CODE ON)
-    target_link_libraries(mayaqua PRIVATE cpu_features)
+    find_package(CpuFeatures)
+    target_link_libraries(mayaqua PRIVATE CpuFeatures::cpu_features)
   endif()
 
   if(${CMAKE_SYSTEM_NAME} STREQUAL "SunOS")
