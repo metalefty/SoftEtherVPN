@@ -1,0 +1,20 @@
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Install dependencies
+      run: sudo apt update && sudo apt-get -y install cmake gcc g++ ninja-build libncurses5-dev libreadline-dev libsodium-dev libssl-dev make zlib1g-dev liblz4-dev libnl-genl-3-dev
+
+    - name: Build
+      run: |
+        CMAKE_FLAGS="-DUSE_BUNDLED_CPU_FEATURES=ON" ./configure
+        make -C build
