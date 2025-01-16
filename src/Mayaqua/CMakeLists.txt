@@ -18,7 +18,7 @@ set_target_properties(mayaqua
 
 find_package(OpenSSL REQUIRED)
 
-if(OPENSSL_VERSION VERSION_LESS "3") # Disable oqsprovider when OpenSSL version < 3
+if(OPENSSL_VERSION VERSION_LESS "3" OR SKIP_OQS_PROVIDER) # Disable oqsprovider when OpenSSL version < 3
   add_definitions(-DSKIP_OQS_PROVIDER)
 else()
   set(OQS_BUILD_ONLY_LIB ON CACHE BOOL "Set liboqs to build only the library (no tests)")
@@ -112,6 +112,15 @@ if(UNIX)
   if (SKIP_CPU_FEATURES)
     message("-- Skipping cpu_features: SKIP_CPU_FEATURES=${SKIP_CPU_FEATURES}")
     add_definitions(-DSKIP_CPU_FEATURES)
+  elseif(USE_BUNDLED_CPU_FEATURES)
+    #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    add_subdirectory(3rdparty/cpu_features)
+    #set_target_properties(cpu_features PROPERTIES CMAKE_POSITION_INDEPENDENT_CODE ON)
+    #find_package(CpuFeatures)
+    #set_property(TARGET cpu_features PROPERTY CMAKE_POSITION_INDEPENDENT_CODE ON)
+    #set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    #CMAKE_PRINT_PROPERTIES(TARGETS cpu_features PROPERTIES POSITION_INDEPENDENT_CODE)
+    target_link_libraries(mayaqua PRIVATE CpuFeatures::cpu_features)
   else()
     find_package(CpuFeatures)
     target_link_libraries(mayaqua PRIVATE CpuFeatures::cpu_features)

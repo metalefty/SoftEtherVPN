@@ -127,6 +127,9 @@ if(UNIX)
   if(SE_PIDDIR)
     add_definitions(-DSE_PIDDIR="${SE_PIDDIR}")
   endif()
+
+  #
+  option(USE_BUNDLED_CPU_FEATURES "Use bundled cpu_features library" OFF)
 endif()
 
 # Cedar communication module

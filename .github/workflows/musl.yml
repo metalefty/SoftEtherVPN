@@ -18,6 +18,6 @@ jobs:
       - name: Install dependencies
         run: apk add binutils --no-cache build-base readline-dev openssl-dev ncurses-dev git cmake zlib-dev libsodium-dev gnu-libiconv libvolk-dev
       - name: Configure
-        run: CMAKE_FLAGS="-DSKIP_CPU_FEATURES=ON" ./configure
+        run: CMAKE_FLAGS="-DUSE_BUNDLED_CPU_FEATURES=ON" ./configure
       - name: make 
         run: make -C build
