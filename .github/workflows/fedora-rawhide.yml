@@ -48,3 +48,6 @@ jobs:
           export CC=${{ matrix.cc }}
           CMAKE_FLAGS="${{ matrix.extra_cmake_flags }}" CFLAGS="${{ matrix.extra_cflags }}" ./configure
           make -C build
+      - name: Basic test
+        run: |
+          build/vpncmd /tools /cmd:check
