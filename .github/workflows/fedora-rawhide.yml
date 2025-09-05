@@ -1,34 +1,50 @@
 name: Fedora/Rawhide
-
 on:
   schedule:
     - cron: "0 0 25 * *"
   push:
   pull_request:
   workflow_dispatch:
-
 permissions:
   contents: read
-
 jobs:
   build_and_test:
     strategy:
       matrix:
-        cc: [ gcc, clang ]
-    name: ${{ matrix.cc }}
+        include:
+          - cc: gcc
+            cpu_features: system
+            extra_packages: google-cpu_features-devel
+            extra_cmake_flags: "-DUSE_SYSTEM_CPU_FEATURES=1"
+            extra_cflags: "-I/usr/include/cpu_features"
+          - cc: clang
+            cpu_features: system
+            extra_packages: google-cpu_features-devel
+            extra_cmake_flags: "-DUSE_SYSTEM_CPU_FEATURES=1"
+            extra_cflags: "-I/usr/include/cpu_features"
+          - cc: gcc
+            cpu_features: bundled
+            extra_packages:
+            extra_cmake_flags:
+            extra_cflags:
+          - cc: clang
+            cpu_features: bundled
+            extra_packages:
+            extra_cmake_flags:
+            extra_cflags:
+    name: ${{ matrix.cc }} with ${{ matrix.cpu_features }} cpu_features
     runs-on: ubuntu-latest
     container:
       image: fedora:rawhide
     steps:
-    - uses: actions/checkout@v1
-      with:
-        submodules: true
-    - name: Install dependencies
-      run: |
-        dnf -y install git cmake ncurses-devel openssl-devel-engine libsodium-devel readline-devel zlib-devel gcc-c++ clang google-cpu_features-devel
-    - name: Compile with ${{ matrix.cc }}
-      run: |
-        export CC=${{ matrix.cc }}
-        CMAKE_FLAGS="-DUSE_SYSTEM_CPU_FEATURES=1" CFLAGS="-I/usr/include/cpu_features" ./configure
-        make -C build
-
+      - uses: actions/checkout@v1
+        with:
+          submodules: true
+      - name: Install dependencies
+        run: |
+          dnf -y install git cmake ncurses-devel openssl-devel-engine libsodium-devel readline-devel zlib-devel gcc-c++ clang ${{ matrix.extra_packages }}
+      - name: Compile with ${{ matrix.cc }}
+        run: |
+          export CC=${{ matrix.cc }}
+          CMAKE_FLAGS="${{ matrix.extra_cmake_flags }}" CFLAGS="${{ matrix.extra_cflags }}" ./configure
+          make -C build
