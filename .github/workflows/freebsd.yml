@@ -1,0 +1,24 @@
+name: FreeBSD
+
+on: [push, pull_request]
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+      with:
+        submodules: true
+    - uses: vmactions/freebsd-vm@v1
+      with:
+        prepare: |
+          pkg install -y pkgconf cmake git libsodium cpu_features
+        run: |
+          CMAKE_FLAGS="-DUSE_SYSTEM_CPU_FEATURES=1" CFLAGS="-I/usr/local/include/cpu_features" ./configure
+          make -j $(nproc || echo 4) -C build
+          ldd build/vpnserver
+          .ci/memory-leak-test.sh
+          .ci/vpntools-check.sh
